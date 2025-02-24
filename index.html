@@ -4,47 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome to Anito</title>
+    <title>Welcome to Anito | Under Development | By Siddhartha Tiwari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* Dark Anime Theme (HiAnime Inspired) */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f4f4f4;
+            background: radial-gradient(circle, #1a1a2e, #0f3460);
+            color: #fff;
         }
 
+        /* Neon Glow Container */
         .container {
             text-align: center;
-            background-color: #fff;
-            padding: 50px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            background: rgba(25, 25, 50, 0.9);
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 162, 255, 0.5);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 500px;
+            transition: transform 0.3s ease;
+            border: 2px solid rgba(0, 162, 255, 0.7);
         }
 
+        .container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 162, 255, 0.8);
+        }
+
+        /* Heading */
         h1 {
-            font-size: 36px;
-            color: #333;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            color: #00a2ff;
+            text-shadow: 0 0 10px rgba(0, 162, 255, 0.8);
         }
 
+        h2 {
+            font-size: 18px;
+            font-weight: 300;
+            color: #a6c1ff;
+        }
+
+        /* Button with Neon Effect */
         .home-link {
+            display: inline-block;
             margin-top: 20px;
             font-size: 18px;
-            color: #007BFF;
+            color: #fff;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: 1px solid #007BFF;
-            background-color: transparent;
+            padding: 12px 25px;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #00a2ff, #0077ff);
+            font-weight: 600;
             transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 162, 255, 0.8);
+            border: none;
         }
 
         .home-link:hover {
-            background-color: #007BFF;
-            color: white;
+            background: linear-gradient(90deg, #0077ff, #0055ff);
+            box-shadow: 0 0 25px rgba(0, 162, 255, 1);
         }
+
+        /* GitHub Card (Fixed inside container) */
+        .iframe-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background: rgba(0, 162, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 450px;
+            height: 180px;
+            border-radius: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -52,6 +101,9 @@
         <h1>Welcome to Anito!</h1>
         <h2>Developed By Siddhartha Tiwari</h2>
         <a href="home.php" class="home-link">Go to Home Page</a>
+        <div class="iframe-container">
+            <iframe src="https://github.com/sponsors/MetaHat/card" title="Sponsor MetaHat"></iframe>
+        </div>
     </div>
 </body>
 </html>

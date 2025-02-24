@@ -27,156 +27,101 @@ $totalPages = $data['data']['totalPages'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results - Anime World</title>
+    <title>Search Results - Anito</title>
     <!--<link rel="stylesheet" href="styles.css">-->
     <style>
-        /* General Page Styles */
+/* Light Anime-Themed Search Results */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f6f7fb, #e3eaf7);
+    color: #333;
     margin: 0;
     padding: 0;
-    color: #333;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Header Styles */
-header {
-    background-color: #121212;
-    padding: 15px 0;
-    text-align: center;
-    color: #fff;
-}
-
-header .logo {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-nav {
-    margin-top: 10px;
-}
-
-/* Search Result Section */
+/* Search Results Section */
 .section {
-    margin-top: 30px;
+    max-width: 900px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 102, 255, 0.2);
 }
 
 h2 {
-    font-size: 2rem;
-    color: #222;
+    font-size: 24px;
+    font-weight: 600;
     text-align: center;
-    margin-bottom: 20px;
+    color: #0077ff;
+    text-shadow: 0 0 8px rgba(0, 119, 255, 0.3);
 }
 
 /* Anime Grid */
 .anime-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
+/* Anime Cards */
 .anime-card {
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    transition: transform 0.3s ease;
-}
-
-.anime-card:hover {
-    transform: translateY(-5px);
+    text-decoration: none;
+    background: rgba(0, 102, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
 }
 
 .anime-card img {
     width: 100%;
-    height: 350px;
-    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0, 102, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.anime-card img:hover {
+    transform: scale(1.05);
 }
 
 .card-info {
-    padding: 15px;
-    text-align: center;
+    padding: 8px;
+    background: rgba(240, 240, 255, 0.7);
+    border-radius: 5px;
 }
 
 .card-info h3 {
-    font-size: 1.4rem;
-    color: #222;
-    margin-bottom: 10px;
-}
-
-.card-info p {
-    font-size: 1rem;
-    color: #666;
+    font-size: 16px;
+    color: #0055ff;
     margin: 5px 0;
 }
 
-/* Pagination Styles */
+/* Pagination */
 .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     margin-top: 20px;
 }
 
 .pagination a {
-    color: #45a049;
-    text-decoration: none;
-    font-weight: bold;
     padding: 10px 15px;
+    margin: 5px;
+    text-decoration: none;
+    background: #0077ff;
+    color: white;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.1);
-    margin: 0 10px;
-    transition: background-color 0.3s ease;
+    transition: 0.3s;
 }
 
 .pagination a:hover {
-    background-color: #45a049;
-    color: #fff;
+    background: #0055ff;
+    box-shadow: 0 0 12px rgba(0, 102, 255, 0.5);
 }
 
 .pagination span {
-    font-size: 1rem;
+    font-weight: 600;
     color: #333;
-}
-
-/* Footer Styles */
-footer {
-    background-color: #121212;
-    padding: 20px 0;
-    text-align: center;
-    color: #fff;
-}
-
-footer p {
-    font-size: 1rem;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .anime-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-
-    .card-info h3 {
-        font-size: 1.2rem;
-    }
-
-    .card-info p {
-        font-size: 0.9rem;
-    }
-
-    .pagination a {
-        padding: 8px 12px;
-    }
 }
 
     </style>
@@ -186,6 +131,7 @@ footer p {
 <?php include 'header.html'; ?>
 
 <main class="container">
+
     <section class="section">
         <h2>Search Results for "<?= htmlspecialchars($query) ?>"</h2>
 
@@ -206,21 +152,31 @@ footer p {
             </div>
 
             <!-- Pagination -->
-            <div class="pagination">
-                <?php if ($currentPage > 1): ?>
-                    <a href="search.php?q=<?= urlencode($query) ?>&page=<?= $currentPage - 1 ?>">Previous</a>
-                <?php endif; ?>
-                <span>Page <?= $currentPage ?> of <?= $totalPages ?></span>
-                <?php if ($currentPage < $totalPages): ?>
-                    <a href="search.php?q=<?= urlencode($query) ?>&page=<?= $currentPage + 1 ?>">Next</a>
-                <?php endif; ?>
-            </div>
+<div class="pagination">
+    <?php if ($currentPage > 1): ?>
+        <a href="search.php?q=<?= urlencode($query) ?>&page=<?= $currentPage - 1 ?>" class="page-btn">Previous</a>
+    <?php endif; ?>
+
+    <span>Page <?= $currentPage ?> of <?= $totalPages ?></span>
+
+    <?php if ($currentPage < $totalPages): ?>
+        <a href="search.php?q=<?= urlencode($query) ?>&page=<?= $currentPage + 1 ?>" class="page-btn">Next</a>
+    <?php endif; ?>
+
+    <!-- Go to Page Input -->
+    <!--<form action="search.php" method="get" class="goto-page-form">-->
+    <!--    <input type="hidden" name="q" value="<?= htmlspecialchars($query) ?>">-->
+    <!--    <input type="number" name="page" min="1" max="<?= $totalPages ?>" placeholder="Go to page" required>-->
+    <!--    <button type="submit">Go</button>-->
+    <!--</form>-->
+</div>
+
         <?php endif; ?>
     </section>
 </main>
 
 <footer>
-    <p>&copy; 2024 Anime World. Powered by Tohost Cloud Services.</p>
+   <center><p>&copy; 2024 Anime World. Powered by Tohost Cloud Services.</p></center> 
 </footer>
 
 </body>
